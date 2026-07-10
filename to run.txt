@@ -1,0 +1,17 @@
+run in cmd in Langgraph folder------do first when opening open terminal
+.venv\Scripts\Activate.ps1
+
+then run
+streamlit run app.py
+
+To see different roles
+langgraph dev
+
+
+
+To try website(agent)
+I want to build a custom smart watch that tracks steps and sends the data over Bluetooth to an app
+
+To test roles
+I want an e-ink display smartwatch with a week-long battery lifespan
+

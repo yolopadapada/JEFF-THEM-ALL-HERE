@@ -1,0 +1,54 @@
+Final Plan: Custom Smart Watch
+Core Components
+Microcontroller + BLE
+
+nRF52840 (Nordic Semiconductor) – powerful Cortex-M4F with built-in BLE 5.2, plenty of GPIO, SPI, I2C, and ultra-low power sleep modes.
+Why: Best-in-class BLE, large community, and enough performance to handle display, touch, and step counting.
+Display
+
+1.3" round color TFT (resolution ~240×240) with GC9A01 driver IC (SPI interface).
+Driver IC: GC9A01 (already on the display module).
+Touch Input (Ring)
+
+Capacitive touch controller: MPR121 (12-channel I2C capacitive touch sensor).
+Use: Connect segmented ring electrodes to the MPR121 to detect swipe/tap around the display.
+Navigation (Scroll + Press)
+
+Mechanical rotary encoder with built-in push button (e.g., PEC11R series). This provides the physical scroll and click you wanted, separate from the touch ring.
+Step Tracking
+
+BMA400 (Bosch) – ultra-low power 3-axis accelerometer with built-in step detection and pedometer.
+Alternative: LIS3DH (STMicro) – also low power, but BMA400 is more efficient for continuous step counting.
+Timekeeping (RTC)
+
+PCF8563 (NXP) – low power I2C real-time clock with battery backup.
+Why: < 0.25 µA in standby, accurate enough for watch use.
+Note: Use a separate coin cell (CR2032) to keep time when main battery is dead.
+Battery & Power Management
+
+LiPo battery (~200 mAh) – enough for ~7 days with moderate use.
+MCP73831 (Microchip) – USB-C LiPo charger IC with charge status.
+MCP1700-3.3V (Microchip) – low quiescent current LDO regulator (1.6 µA) to power everything at 3.3V.
+USB-C receptacle (with proper CC resistors for 5V charging).
+Other
+
+Passive components (resistors, capacitors, pull-ups) for all ICs.
+PCB with 4 layers (recommended for mixed-signal and BLE antenna).
+Special: you'll need a BLE antenna design (either chip antenna or PCB trace) – consider using a pre-certified nRF52840 module (e.g., Raytac MDBT50Q) to simplify RF.
+List of Specific ICs Required
+Function	IC / Part Number	Quantity	Notes
+MCU + BLE	nRF52840 (QFN or module)	1	Use a module like MDBT50Q for easy soldering
+Display driver	GC9A01 (on display module)	1	Already integrated on round TFT modules
+Capacitive touch	MPR121 (I2C)	1	12 channels – enough for 6–8 ring segments
+Accelerometer	BMA400 (I2C/SPI)	1	Built-in step detection
+Real-time clock	PCF8563 (I2C)	1	Low power, backup coin cell
+Battery charger	MCP73831 (SOT-23-5)	1	Adjustable charge current
+Voltage regulator	MCP1700-3.3V (SOT-23-3)	1	250 mA output, 1.6 µA quiescent
+USB-C connector	USB-C female receptacle (16-pin)	1	With CC resistors (5.1 kΩ to GND)
+Rotary encoder	PEC11R-4220F-S0024	1	24 detents, push button
+Additional components (not ICs):
+
+LiPo battery (e.g., 200 mAh, 3.7V).
+Coin cell holder (CR2032) for RTC backup.
+Small OLED/LCD module with GC9A01 (1.3" round).
+Passive components (resistors, capacitors, etc.) as per datasheets.

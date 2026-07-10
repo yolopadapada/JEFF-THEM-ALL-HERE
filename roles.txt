@@ -1,0 +1,16 @@
+The Supervisor (The Project Manager): Listens to your prompt, decides which sub-agent needs to work next, reviews their outputs, and manages the team flow.
+
+The Interviewer / Requirement Analyst: Chats with you to refine your goals and locks down hard constraints (e.g., "Must have a 200mAh battery cap," "Screen must be round").
+
+The Researcher (The Search Specialist): Equipped with a web search tool (like Tavily or Google Search) to find existing real-world schematics and verify real-world component availability.
+
+The Hardware Architect (The Structural Builder): Takes the locked constraints and selects the exact IC chips, checking cross-compatibility (e.g., ensuring your voltage regulator matches your MCU).
+
+The Critic / Quality Validator (The Compliance Officer): Inspects the Architect's final list against the Interviewer's original constraints. If a component is wrong or wasn't requested, it rejects the build and forces a revision loop.
+
+
+
+Supervisor receives question and sends it on to interviewer to identify the goals and constraints of product. Interviewer will keep asking questions about required hardware and special features, until all features is covered about a specific product. Interviewer then send request to researcher to find existing tools and components. The researcher then sends the found knowledge to the hardware architect where the exact components are selected based on description and similarity in real life. All the final details of the components will then be sent to quality validator to review the final list against the Interviewer's original constraint. If a component is wrong or wasn't requested, it rejects the build and forces a revision loop.
+
+
+Generated an entire code that i can completely replace the current code with the code provided in the text box. 
